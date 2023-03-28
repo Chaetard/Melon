@@ -27,7 +27,7 @@ public class VistaLogin extends JFrame {
     public JCheckBox Ch = new JCheckBox("Recuerdame");
 
     private ImageIcon ImIcon = new ImageIcon(getClass().getResource("/imagenes/account.png"));
-    private ImageIcon ImIconRedimensionado = new ImageIcon(ImIcon.getImage().getScaledInstance(32, 32, Image.SCALE_DEFAULT));
+   private ImageIcon ImIconRedimensionado = new ImageIcon(ImIcon.getImage().getScaledInstance(32, 32, Image.SCALE_DEFAULT));
     public JLabel LblUsuario = new JLabel(ImIconRedimensionado);
 
     private ImageIcon ImIconC = new ImageIcon(getClass().getResource("/imagenes/candado.png"));

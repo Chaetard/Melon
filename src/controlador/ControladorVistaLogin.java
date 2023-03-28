@@ -5,12 +5,9 @@
  */
 package controlador;
 
-import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import vista.VistaLogin;
 
@@ -35,7 +32,7 @@ public class ControladorVistaLogin implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-       
+
     }
 
     @Override
@@ -45,7 +42,7 @@ public class ControladorVistaLogin implements MouseListener {
             VL.TxtPassword.setEchoChar((char) 0);
 
         }
-        
+
     }
 
     @Override
