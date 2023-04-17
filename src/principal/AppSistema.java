@@ -1,9 +1,10 @@
-/** @DATE 03/13/2023
+/** @MAIN, CLASE PRINCIPAL
  */
 package principal;
 
 import controlador.ControladorVistaSplash;
 import vista.VistaSplash;
+
 
 /**
  *
@@ -13,5 +14,7 @@ public class AppSistema {
     public static void main(String[] args) {
         VistaSplash VS = new VistaSplash();
         ControladorVistaSplash CVS = new ControladorVistaSplash(VS);
-    }
+      
+        
+    } 
 }

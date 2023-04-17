@@ -6,10 +6,10 @@ import javax.swing.JOptionPane;
 */
 public class Conexion  {
     //Datos necesarios que cambian de acuerdo a las necesidades de la aplicación
-    private final String Servidor = "10.92.20.218"; //si es local = "localhost"
-    private final String Database = "tiendita";//
-    private final String Usuario = "chabelo"; //si el servidor es con localhost = root
-    private final String Password = "cuate";    //si el servidor es con localhost = ""
+    private final String Servidor = "localhost"; //si es local = "localhost"
+    private final String Database = "melonp";//
+    private final String Usuario = "root"; //si el servidor es con localhost = root
+    private final String Password = "";    //si el servidor es con localhost = ""
     
     //Datos necesarios
     private final String Puerto = "3306"; //Es el puerto definido para MySQL

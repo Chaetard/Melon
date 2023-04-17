@@ -9,7 +9,11 @@ import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import modelo.ConsultasUsuario;
+import modelo.ModeloUsuario;
 import vista.VistaLogin;
+import vista.VistaPantallaPrincipal;
 
 /**
  *
@@ -18,21 +22,54 @@ import vista.VistaLogin;
 public class ControladorVistaLogin implements MouseListener {
 
     VistaLogin VL;
-    public ImageIcon Ojo2 = new ImageIcon(getClass().getResource("/imagenes/view.png"));
+    ModeloUsuario ModeloUsuario;
+    ConsultasUsuario ConsultasUsuario = new ConsultasUsuario();
+     public ImageIcon Ojo2 = new ImageIcon(getClass().getResource("/imagenes/view.png"));
     public ImageIcon Ojo2Tam = new ImageIcon(Ojo2.getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT));
 
     public ImageIcon Ojo1 = new ImageIcon(getClass().getResource("/imagenes/hide.png"));
     public ImageIcon Ojo1Tam = new ImageIcon(Ojo1.getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT));
 
-    public ControladorVistaLogin(VistaLogin VL) {
+    public ControladorVistaLogin(VistaLogin VL, ModeloUsuario ModeloUsuario) {
         this.VL = VL;
+        this.ModeloUsuario = ModeloUsuario;
         this.VL.setVisible(true);
         oyentes();
     }
-
+    public boolean camposValidos(){
+        if (VL.TxtUsuario.getText().isEmpty() || VL.TxtPassword.getPassword().length==0) 
+            return false;
+        else
+            return true;
+    }
+    private void llenarModeloConCampos(){
+        ModeloUsuario.setUsuario(VL.TxtUsuario.getText());
+        ModeloUsuario.setPassword(new String (VL.TxtPassword.getPassword()));
+        ModeloUsuario.setNombre("");
+        ModeloUsuario.setTipo("");
+    }
+    private void BuscarUsuarioPassword(){
+        if(camposValidos()==true){
+            llenarModeloConCampos();
+            if (ConsultasUsuario.buscarLogin(ModeloUsuario)==true) {
+                JOptionPane.showMessageDialog(VL,"Bienvenido: " + ModeloUsuario.getNombre(),"Tipo: " + ModeloUsuario.getTipo(),1);
+                VL.dispose();
+                VistaPantallaPrincipal vistaPantallaPrincipal = new VistaPantallaPrincipal();
+                ControladorVistaPantallaPrincipal ControladorVistaPantallaPrincipal;
+                ControladorVistaPantallaPrincipal = new ControladorVistaPantallaPrincipal(vistaPantallaPrincipal);
+                
+            }else{
+                JOptionPane.showMessageDialog(VL,"Usuario o Password Incorrectos");
+            }
+        }else{
+            JOptionPane.showMessageDialog(VL, "Debes colocar texto en los campos" + "Usuario y Password");
+        }
+    }
     @Override
     public void mouseClicked(MouseEvent e) {
-
+        if (e.getSource() == VL.BtnLog) {
+            BuscarUsuarioPassword();
+        }
     }
 
     @Override
@@ -64,6 +101,8 @@ public class ControladorVistaLogin implements MouseListener {
     private void oyentes() {
         VL.OjoLbl.addMouseListener(this);
         VL.MelonL.addMouseListener(this);
+        VL.BtnLog.addMouseListener(this);
+    
     }
 
 }

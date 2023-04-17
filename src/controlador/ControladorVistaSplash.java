@@ -13,6 +13,7 @@ import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import modelo.ModeloUsuario;
 import vista.VistaLogin;
 import vista.VistaSplash;
 
@@ -93,8 +94,9 @@ public class ControladorVistaSplash implements MouseListener, MouseMotionListene
         }finally{
          VS.dispose();
          
+            ModeloUsuario ModeloUsuario = new ModeloUsuario();
             VistaLogin VS = new VistaLogin();
-            ControladorVistaLogin controladorVistaLogin = new ControladorVistaLogin(VS);
+            ControladorVistaLogin controladorVistaLogin = new ControladorVistaLogin(VS, ModeloUsuario);
         }
     }
 
