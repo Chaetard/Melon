@@ -5,34 +5,47 @@
  */
 package vista;
 
+import controlador.ControladorVistaLogin;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import modelo.ModeloUsuario;
+import javax.swing.JPanel;
 
 /**
  *
  * @author Jesus Santos 221341606
  */
-public class VistaPantallaPrincipal extends JFrame {
+public class VistaPantallaPrincipal extends JFrame implements interfaces.Fuentes {
 
-   
-    
+    JPanel PanelArriba = new JPanel();
+    JPanel PanelCentral = new JPanel();
+    String msj = ControladorVistaLogin.nam;
+    JLabel Bienvenida = new JLabel(" Usuario: " + msj);
+    int is = 35;
+
     private ImageIcon ImIcon = new ImageIcon(getClass().getResource("/imagenes/account.png"));
-    private ImageIcon ImIconRedimensionado = new ImageIcon(ImIcon.getImage().getScaledInstance(32, 32, Image.SCALE_DEFAULT));
+    private ImageIcon ImIconRedimensionado = new ImageIcon(ImIcon.getImage().getScaledInstance(is, is, Image.SCALE_DEFAULT));
     public JLabel LblUsuario = new JLabel(ImIconRedimensionado);
 
+    private ImageIcon Log = new ImageIcon(getClass().getResource("/imagenes/logout.png"));
+    private ImageIcon logR = new ImageIcon(Log.getImage().getScaledInstance(is, is, Image.SCALE_DEFAULT));
+    public JLabel LblLog = new JLabel(logR);
+
     private ImageIcon carr = new ImageIcon(getClass().getResource("/imagenes/carr.png"));
-    private ImageIcon carrRedimensionado = new ImageIcon(carr.getImage().getScaledInstance(32, 32, Image.SCALE_DEFAULT));
+    private ImageIcon carrRedimensionado = new ImageIcon(carr.getImage().getScaledInstance(is, is, Image.SCALE_DEFAULT));
     public JLabel LblCarr = new JLabel(carrRedimensionado);
 
     private ImageIcon min = new ImageIcon(getClass().getResource("/imagenes/min.png"));
-    private ImageIcon minRedimensionado = new ImageIcon(min.getImage().getScaledInstance(32, 32, Image.SCALE_DEFAULT));
+    private ImageIcon minRedimensionado = new ImageIcon(min.getImage().getScaledInstance(is, is, Image.SCALE_DEFAULT));
     public JLabel Lblmin = new JLabel(minRedimensionado);
 
     private ImageIcon close = new ImageIcon(getClass().getResource("/imagenes/close.png"));
-    private ImageIcon closeRedimensionado = new ImageIcon(close.getImage().getScaledInstance(32, 32, Image.SCALE_DEFAULT));
+    private ImageIcon closeRedimensionado = new ImageIcon(close.getImage().getScaledInstance(is, is, Image.SCALE_DEFAULT));
     public JLabel Lblclose = new JLabel(closeRedimensionado);
 
     public VistaPantallaPrincipal() {
@@ -42,24 +55,34 @@ public class VistaPantallaPrincipal extends JFrame {
 
     private void configuracion() {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setSize(854, 480);
-        this.setTitle("Pantalla Principal"  );
+
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setSize(screenSize.width, screenSize.height);
+
+        this.setExtendedState(MAXIMIZED_BOTH);
         this.setLocationRelativeTo(null);
-        this.setLayout(null);
+        this.setLayout(new BorderLayout());
         this.getContentPane().setBackground(new java.awt.Color(241, 195, 91));
-        this.setResizable(false);
+        this.setUndecorated(true);
         this.setAlwaysOnTop(true);
     }
 
     private void etiquetas() {
-        LblUsuario.setBounds(10, 5, 60, 60);
-        this.add(LblUsuario);
-        LblCarr.setBounds(10, 70, 60, 60);
-        this.add(LblCarr);
-        Lblmin.setBounds(10, 135, 60, 60);
-        this.add(Lblmin);
-        Lblclose.setBounds(10, 200, 60, 60);
-        this.add(Lblclose);
+        Bienvenida.setFont(FUENTES_TITULOS);
+        PanelCentral.setBackground(new java.awt.Color(247, 221, 161));
+        PanelArriba.setBackground(new java.awt.Color(235, 196, 21));
+        this.add(PanelArriba, BorderLayout.NORTH);
+        PanelArriba.setLayout(new GridLayout(1, 10));
+        this.add(PanelCentral, BorderLayout.CENTER);
+        PanelCentral.add(Bienvenida);
+        
+        PanelArriba.add(LblUsuario);
+        PanelArriba.add(LblCarr);
+        
+         PanelArriba.add(LblLog);
+         PanelArriba.add(Lblmin);
+        PanelArriba.add(Lblclose);
+       
     }
 
 }

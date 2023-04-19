@@ -1,4 +1,4 @@
-/** @MAIN, CLASE PRINCIPAL
+/** @MAIN, <CLASE PRINCIPAL
  */
 package principal;
 
