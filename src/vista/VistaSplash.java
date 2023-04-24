@@ -15,7 +15,7 @@ public class VistaSplash extends JFrame {
    
     private ImageIcon ImSplash = new ImageIcon(getClass().getResource("/imagenes/splash.gif"));
     public JLabel LblSplash = new JLabel(ImSplash);
-    
+    ImageIcon ImFavicon = new ImageIcon(getClass().getResource("/imagenes/favicon.png"));
     public VistaSplash() { //Constructor Vacio
         configuracion();
         eiqueta();
@@ -35,6 +35,7 @@ public class VistaSplash extends JFrame {
         //Remove the background
         this.setBackground(new Color(0, 0, 0, 0));
         this.setAlwaysOnTop(true);
+         this.setIconImage(ImFavicon.getImage());
     }
     
 }

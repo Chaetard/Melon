@@ -31,7 +31,7 @@ public class ControladorVistaLogin implements MouseListener {
     public ImageIcon Ojo1Tam = new ImageIcon(Ojo1.getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT));
 
     public static String nam;
-
+    public static String tip;
     public ControladorVistaLogin(VistaLogin VL, ModeloUsuario ModeloUsuario) {
         this.VL = VL;
         this.ModeloUsuario = ModeloUsuario;
@@ -63,6 +63,7 @@ public class ControladorVistaLogin implements MouseListener {
             if (ConsultasUsuario.buscarLogin(ModeloUsuario) == true) {
                 JOptionPane.showMessageDialog(VL, "Bienvenido: " + ModeloUsuario.getNombre(), "Tipo: " + ModeloUsuario.getTipo(), 1);
                 nam = ModeloUsuario.getNombre();
+                tip = ModeloUsuario.getTipo();
                 VL.dispose();
                 VistaPantallaPrincipal vistaPantallaPrincipal = new VistaPantallaPrincipal();
                 ControladorVistaPantallaPrincipal ControladorVistaPantallaPrincipal;

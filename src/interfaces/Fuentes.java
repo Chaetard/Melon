@@ -13,4 +13,5 @@ import java.awt.Font;
  */
 public interface Fuentes {
     Font FUENTES_TITULOS = new Font("Times new Roman",1,40);
+    Font FUENTES_SECUNDARIOS = new Font("Italic",1,25);
 }
