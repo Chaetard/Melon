@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="3bc954d3-5c80-4eec-b8be-fbac236eeaa6" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/conexion/Conexion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/conexion/Conexion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/principal/AppSistema.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/principal/AppSistema.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vista/VistaLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vista/VistaLogin.java" afterDir="false" />
+    <list default="true" id="3bc954d3-5c80-4eec-b8be-fbac236eeaa6" name="Changes" comment="ventas">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +26,10 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "C:/Users/Chuy_/OneDrive/Documentos/NetBeansProjects/Melon",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
@@ -38,10 +43,23 @@
       <option name="presentableId" value="Default" />
       <updated>1681604636933</updated>
       <workItem from="1681604637427" duration="58000" />
+      <workItem from="1682349699387" duration="631000" />
     </task>
+    <task id="LOCAL-00001" summary="ventas">
+      <created>1682350261616</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1682350261616</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="ventas" />
+    <option name="LAST_COMMIT_MESSAGE" value="ventas" />
   </component>
 </project>

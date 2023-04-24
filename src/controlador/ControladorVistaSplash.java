@@ -88,7 +88,7 @@ public class ControladorVistaSplash implements MouseListener, MouseMotionListene
 
     private void dormirMatarSplash(int i) {
         try {
-            Thread.sleep(i * 10);
+            Thread.sleep(i * 1000);
         } catch (InterruptedException ex) {
             System.out.println("Error " + ex);
         }finally{
