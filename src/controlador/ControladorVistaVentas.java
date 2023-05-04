@@ -34,6 +34,7 @@ public class ControladorVistaVentas implements MouseListener {
 
     private void oyentes() {
         VV.BtnGuardar.addMouseListener(this);
+        VV.BtnSalir.addMouseListener(this);
     }
 
     private void llenarModeloCampos() {
@@ -67,7 +68,14 @@ public class ControladorVistaVentas implements MouseListener {
     public void mouseClicked(MouseEvent e) {
         if (e.getSource() == VV.BtnGuardar) {
             InsertarDatosVenta();
-            
+
+        }
+        if (e.getSource() == VV.BtnSalir) {
+            int opcion = JOptionPane.showConfirmDialog(VV, "En verdad quieres salir", "Alerta", 0, 3);
+            if (opcion == 0) {
+
+                VV.dispose();
+            }
         }
     }
 
@@ -76,7 +84,7 @@ public class ControladorVistaVentas implements MouseListener {
         if (ConsultaVenta.insertar(ModeloVenta) == true) {
             JOptionPane.showMessageDialog(VV, "Datos Introducidos", "Echo", 1);
         } else {
-            
+
         }
     }
 

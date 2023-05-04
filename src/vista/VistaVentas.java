@@ -20,7 +20,7 @@ import javax.swing.JTextField;
 public class VistaVentas extends JFrame implements Fuentes {
 
     ImageIcon ImFavicon = new ImageIcon(getClass().getResource("/imagenes/favicon.png"));
-    JLabel titulo = new JLabel("ABC De Productos");
+    JLabel titulo = new JLabel("ABC De Ventas");
 
     JLabel idVentaL = new JLabel("Id de la Venta");
     public JTextField idVenta = new JTextField();
