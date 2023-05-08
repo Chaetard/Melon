@@ -2,7 +2,9 @@
  */
 package principal;
 
+
 import controlador.ControladorVistaSplash;
+
 import vista.VistaSplash;
 
 
@@ -15,6 +17,6 @@ public class AppSistema {
         VistaSplash VS = new VistaSplash();
         ControladorVistaSplash CVS = new ControladorVistaSplash(VS);
       
-        
+         
     } 
 }

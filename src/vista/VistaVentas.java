@@ -5,13 +5,17 @@
  */
 package vista;
 
+
 import interfaces.Fuentes;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import controlador.ControladorVistaVentas;
 
 /**
  *
@@ -19,35 +23,64 @@ import javax.swing.JTextField;
  */
 public class VistaVentas extends JFrame implements Fuentes {
 
-    ImageIcon ImFavicon = new ImageIcon(getClass().getResource("/imagenes/favicon.png"));
-    JLabel titulo = new JLabel("ABC De Ventas");
+    public ImageIcon ImFavicon = new ImageIcon(getClass().getResource("/imagenes/favicon.png"));
+    public JLabel titulo = new JLabel("ABC De Ventas");
+    public JLabel parrafo = new JLabel("¿Que desea Hacer?");
 
-    JLabel idVentaL = new JLabel("Id de la Venta");
+    public JLabel idVentaL = new JLabel("Id de la Venta");
     public JTextField idVenta = new JTextField();
 
-    JLabel clienteL = new JLabel("Id del Cliente");
+    public JLabel clienteL = new JLabel("Id del Cliente");
     public JTextField cliente = new JTextField();
 
-    JLabel totalL = new JLabel("Total");
+    public JLabel totalL = new JLabel("Total");
     public JTextField total = new JTextField();
 
-    JLabel estadoL = new JLabel("Estado");
+    public JLabel estadoL = new JLabel("Estado");
     public JTextField estado = new JTextField();
 
-    JLabel descuentoL = new JLabel("Descuento");
+    public JLabel descuentoL = new JLabel("Descuento");
     public JTextField descuento = new JTextField();
 
-    JLabel metodoPagL = new JLabel("Forma de Pago");
+    public JLabel metodoPagL = new JLabel("Forma de Pago");
     public JTextField metodoPag = new JTextField();
 
-    JLabel idEmpL = new JLabel("Id del Empleado");
+    public JLabel idEmpL = new JLabel("Id del Empleado");
     public JTextField idEmp = new JTextField();
 
     public JButton BtnGuardar = new JButton("Guardar");
     public JButton BtnBuscar = new JButton("Buscar");
     public JButton BtnEliminar = new JButton("Eliminar");
     public JButton BtnActualizar = new JButton("Actualizar");
-    public JButton BtnSalir = new JButton("Salir");
+    
+
+    public int tami = 100;
+    private ImageIcon plus = new ImageIcon(getClass().getResource("/imagenes/plus.png"));
+    private ImageIcon plusTam = new ImageIcon(plus.getImage().getScaledInstance(tami, tami, Image.SCALE_DEFAULT));
+    public JLabel plusL = new JLabel(plusTam);
+
+    private ImageIcon search = new ImageIcon(getClass().getResource("/imagenes/search.png"));
+    private ImageIcon searchTam = new ImageIcon(search.getImage().getScaledInstance(tami, tami, Image.SCALE_DEFAULT));
+    public JLabel searchL = new JLabel(searchTam);
+
+    private ImageIcon logoutVentas = new ImageIcon(getClass().getResource("/imagenes/logoutVentas.png"));
+    private ImageIcon logoutVentasTam = new ImageIcon(logoutVentas.getImage().getScaledInstance(tami, tami, Image.SCALE_DEFAULT));
+    public JLabel logoutVentasL = new JLabel(logoutVentasTam);
+
+    private ImageIcon changes = new ImageIcon(getClass().getResource("/imagenes/changes.png"));
+    private ImageIcon changesTam = new ImageIcon(changes.getImage().getScaledInstance(tami, tami, Image.SCALE_DEFAULT));
+    public JLabel changesL = new JLabel(changesTam);
+
+    private ImageIcon cross = new ImageIcon(getClass().getResource("/imagenes/cross.png"));
+    private ImageIcon crossTam = new ImageIcon(cross.getImage().getScaledInstance(tami, tami, Image.SCALE_DEFAULT));
+    public JLabel crossL = new JLabel(crossTam);
+
+    public JLabel LplusL = new JLabel("");
+    public JLabel LsearchL = new JLabel("");
+    public JLabel LchangesL = new JLabel("");
+    public JLabel LcrossL = new JLabel("");
+    public JLabel LlogoutVentasL = new JLabel("");
+    private ControladorVistaVentas CC;
 
     public VistaVentas() {
         configuracion();
@@ -69,61 +102,112 @@ public class VistaVentas extends JFrame implements Fuentes {
     }
 
     private void etiquetas() {
-        titulo.setFont(FUENTES_TITULOS);
 
         this.add(titulo);
+        this.add(parrafo);
+
         this.add(BtnGuardar);
         this.add(BtnBuscar);
         this.add(BtnEliminar);
         this.add(BtnActualizar);
-        this.add(BtnSalir);
+   
+        this.add(idVentaL);
+        this.add(idVenta);
+        this.add(clienteL);
+        this.add(cliente);
+        this.add(estadoL);
+        this.add(estado);
+        this.add(descuentoL);
+        this.add(descuento);
+        this.add(metodoPagL);
+        this.add(metodoPag);
+        this.add(idEmpL);
+        this.add(idEmp);
+        this.add(totalL);
+        this.add(total);
+
+        BtnGuardar.setVisible(false);
+        BtnBuscar.setVisible(false);
+        BtnEliminar.setVisible(false);
+        BtnActualizar.setVisible(false);
+  
+        idVentaL.setVisible(false);
+        idVenta.setVisible(false);
+        clienteL.setVisible(false);
+        cliente.setVisible(false);
+        estadoL.setVisible(false);
+        estado.setVisible(false);
+        descuentoL.setVisible(false);
+        descuento.setVisible(false);
+        metodoPagL.setVisible(false);
+        metodoPag.setVisible(false);
+        idEmpL.setVisible(false);
+        idEmp.setVisible(false);
+        totalL.setVisible(false);
+        total.setVisible(false);
+
+        this.add(plusL);
+        this.add(crossL);
+        this.add(changesL);
+        this.add(logoutVentasL);
+        this.add(searchL);
+
+        this.add(LplusL);
+        this.add(LsearchL);
+        this.add(LchangesL);
+        this.add(LcrossL);
+        this.add(LlogoutVentasL);
+
+        plusL.setBounds(78, 290, tami, tami);
+        searchL.setBounds(334, 290, tami, tami);
+        changesL.setBounds(590, 290, tami, tami);
+        crossL.setBounds(846, 290, tami, tami);
+        logoutVentasL.setBounds(1102, 290, tami, tami);
 
         BtnBuscar.setPreferredSize(new Dimension(120, 60));
         BtnActualizar.setPreferredSize(new Dimension(120, 60));
         BtnEliminar.setPreferredSize(new Dimension(120, 60));
-        BtnSalir.setPreferredSize(new Dimension(120, 60));
+      
         BtnGuardar.setPreferredSize(new Dimension(120, 60));
 
-        titulo.setBounds(440, 20, 400, 60);
+        titulo.setFont(new Font("Arial", Font.PLAIN, 40));
+        Dimension titleSize = titulo.getPreferredSize();
+        int titleX = (1280 - titleSize.width) / 2;
+        int titleY = 20;
+        titulo.setBounds(titleX, titleY, titleSize.width, titleSize.height);
+
+        parrafo.setFont(new Font("Arial", Font.PLAIN, 25));
+        Dimension parrafoSize = parrafo.getPreferredSize();
+        int parrafoX = (1280 - parrafoSize.width) / 2;
+        int parrafoY = 75;
+        parrafo.setBounds(parrafoX, parrafoY, parrafoSize.width, parrafoSize.height);
+
         idVentaL.setFont(FUENTES_SECUNDARIOS);
-        this.add(idVentaL);
-        this.add(idVenta);
+
         idVentaL.setBounds(340, 80, 500, 100);
         idVenta.setBounds(510, 115, 500, 35);
         total.setFont(FUENTES_SECUNDARIOS);
 
-        this.add(clienteL);
-        this.add(cliente);
         clienteL.setFont(FUENTES_SECUNDARIOS);
         clienteL.setBounds(340, 130, 500, 100);
         cliente.setBounds(510, 165, 500, 35);
 
-        this.add(estadoL);
-        this.add(estado);
         estadoL.setFont(FUENTES_SECUNDARIOS);
         estadoL.setBounds(340, 180, 500, 100);
         estado.setBounds(510, 215, 500, 35);
 
-        this.add(descuentoL);
-        this.add(descuento);
         descuentoL.setFont(FUENTES_SECUNDARIOS);
         descuentoL.setBounds(340, 230, 500, 100);
         descuento.setBounds(510, 265, 500, 35);
 
-        this.add(metodoPagL);
-        this.add(metodoPag);
         metodoPagL.setFont(FUENTES_SECUNDARIOS);
         metodoPagL.setBounds(340, 280, 500, 100);
         metodoPag.setBounds(510, 315, 500, 35);
 
-        this.add(totalL);
-        this.add(total);
         totalL.setFont(FUENTES_SECUNDARIOS);
         totalL.setBounds(340, 330, 500, 100);
         total.setBounds(510, 365, 500, 35);
 
-        this.add(idEmpL);
-        this.add(idEmp);
         idEmpL.setFont(FUENTES_SECUNDARIOS);
         idEmpL.setBounds(340, 400, 500, 100);
         idEmp.setBounds(540, 435, 70, 35);
@@ -132,6 +216,7 @@ public class VistaVentas extends JFrame implements Fuentes {
         BtnBuscar.setBounds(340, 585, 120, 60);
         BtnEliminar.setBounds(560, 585, 120, 60);
         BtnActualizar.setBounds(780, 585, 120, 60);
-        BtnSalir.setBounds(1000, 585, 120, 60);
+        
+
     }
 }

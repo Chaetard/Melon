@@ -89,7 +89,10 @@ public class VistaPantallaPrincipal extends JFrame implements interfaces.Fuentes
         Tipo.setFont(FUENTES_SECUNDARIOS);
         PanelArriba.add(Tipo);
 
-        PanelArriba.add(LblUsuario);
+        if (tmsj.equalsIgnoreCase("GERENTE")) {
+            PanelArriba.add(LblUsuario);
+        }
+        
         PanelArriba.add(LblCarr);
         LblCarr.setToolTipText("Registrar Ventas");
 
