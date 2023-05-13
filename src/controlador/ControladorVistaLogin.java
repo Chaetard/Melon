@@ -8,6 +8,11 @@ package controlador;
 import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import modelo.ConsultasUsuario;
@@ -40,6 +45,12 @@ public class ControladorVistaLogin implements MouseListener {
         oyentes();
 
     }
+    
+    private String encriptarPassword(String Password) throws NoSuchAlgorithmException{
+        MessageDigest MD = MessageDigest.getInstance("MD5");
+        MD.update(Password.getBytes(),0,Password.length());
+        return new BigInteger(1,MD.digest()).toString(16);
+    }
 
     public boolean camposValidos() {
         if (VL.TxtUsuario.getText().isEmpty() || VL.TxtPassword.getPassword().length == 0) {
@@ -49,15 +60,20 @@ public class ControladorVistaLogin implements MouseListener {
         }
     }
 
-    private void llenarModeloConCampos() {
+    private void llenarModeloConCampos()throws NoSuchAlgorithmException{
+        
         ModeloUsuario.setUsuario(VL.TxtUsuario.getText());
-        ModeloUsuario.setPassword(new String(VL.TxtPassword.getPassword()));
+        
+        String PasswordSinEncriptar = new String(VL.TxtPassword.getPassword());
+        String passEncriptado = encriptarPassword(PasswordSinEncriptar);
+        System.out.println(encriptarPassword(PasswordSinEncriptar));
+        ModeloUsuario.setPassword(passEncriptado);
         ModeloUsuario.setNombre("");
         ModeloUsuario.setTipo("");
 
     }
 
-    private void BuscarUsuarioPassword() {
+    private void BuscarUsuarioPassword()  throws NoSuchAlgorithmException{
         if (camposValidos() == true) {
             llenarModeloConCampos();
             if (ConsultasUsuario.buscarLogin(ModeloUsuario) == true) {
@@ -80,7 +96,11 @@ public class ControladorVistaLogin implements MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getSource() == VL.BtnLog) {
-            BuscarUsuarioPassword();
+            try {
+                BuscarUsuarioPassword();
+            } catch (NoSuchAlgorithmException ex) {
+                Logger.getLogger(ControladorVistaLogin.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
@@ -116,5 +136,7 @@ public class ControladorVistaLogin implements MouseListener {
         VL.BtnLog.addMouseListener(this);
 
     }
+    
+    
 
 }

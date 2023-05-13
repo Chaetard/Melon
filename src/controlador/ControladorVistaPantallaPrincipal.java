@@ -11,9 +11,11 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JOptionPane;
 import modelo.ModeloUsuario;
+import modelo.ModeloUsuarioConf;
 import modelo.ModeloVenta;
 import vista.VistaLogin;
 import vista.VistaPantallaPrincipal;
+import vista.VistaUsuarios;
 import vista.VistaVentas;
 
 /**
@@ -23,7 +25,7 @@ import vista.VistaVentas;
 public class ControladorVistaPantallaPrincipal implements MouseListener {
 
     VistaPantallaPrincipal VPP;
-
+    
     public ControladorVistaPantallaPrincipal(VistaPantallaPrincipal VPP) {
 
         this.VPP = VPP;
@@ -60,6 +62,11 @@ public class ControladorVistaPantallaPrincipal implements MouseListener {
             VistaVentas VV = new VistaVentas();
             ModeloVenta ModeloVenta = new ModeloVenta();
             ControladorVistaVentas controladorVistaVentas = new ControladorVistaVentas(VV, ModeloVenta);
+        }
+        if (e.getSource() == VPP.LblUsuario) {
+            VistaUsuarios vistaUsuarios = new VistaUsuarios();
+            ModeloUsuarioConf ModeloUsuarioConf = new ModeloUsuarioConf();
+            ControladorVistaUsuarios controladorVistaUsuarios = new ControladorVistaUsuarios(vistaUsuarios, ModeloUsuarioConf);
         }
     }
 

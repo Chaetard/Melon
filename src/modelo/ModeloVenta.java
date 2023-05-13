@@ -17,7 +17,7 @@ public class ModeloVenta {
     private String Metodo_pago;
     private double total;
     private int id_empleado;
-    
+    private String fecha;
     public ModeloVenta(){
         
     }
@@ -76,6 +76,14 @@ public class ModeloVenta {
 
     public void setId_empleado(int id_empleado) {
         this.id_empleado = id_empleado;
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
     }
     
 }

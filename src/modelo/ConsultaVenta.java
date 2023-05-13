@@ -8,6 +8,8 @@ package modelo;
 import conexion.Conexion;
 import java.sql.*;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -43,13 +45,15 @@ public class ConsultaVenta extends Conexion {
     public boolean modificar(ModeloVenta Modelo) {
         try {
             PreparedStatement Ps;
-            String SQL = "update venta set estado=?, id_cliente=?, metodo_pago=?, total=? where id_venta = ?";
+            String SQL = "update venta set estado=?, id_cliente=?, metodo_pago=?, total=?, descuento=?, id_empleado=? where id_venta = ?";
             Ps = Con.prepareCall(SQL);
             Ps.setString(1, Modelo.getEstado());
             Ps.setInt(2, Modelo.getId_cliente());
             Ps.setString(3, Modelo.getMetodo_pago());
             Ps.setDouble(4, Modelo.getTotal());
-            Ps.setInt(5, Modelo.getid_Venta());
+            Ps.setDouble(5, Modelo.getDescuento());
+            Ps.setInt(6, Modelo.getId_empleado());
+            Ps.setInt(7, Modelo.getid_Venta());
 
             Ps.executeUpdate();
             return true;
@@ -93,9 +97,70 @@ public class ConsultaVenta extends Conexion {
 
             }
             return false;
-        } catch (SQLException e){
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al Buscar: " + e);
             return false;
+        }
+    }
+
+    public boolean buscarVentas(DefaultTableModel Modelo) {
+        try {
+            PreparedStatement Ps;
+            String SQL = "select * from venta order by fecha";
+            Ps = Con.prepareCall(SQL);
+
+            ResultSet Rs = Ps.executeQuery();
+            int numeroDeCampos = Rs.getMetaData().getColumnCount();
+            while (Rs.next()) {
+                Object Fila[] = new Object[numeroDeCampos];
+                Fila[0] = Rs.getInt("id_venta");
+                Fila[1] = Rs.getString("estado");
+                Fila[2] = Rs.getInt("id_cliente");
+                Fila[3] = Rs.getFloat("total");
+                Fila[4] = Rs.getString("metodo_pago");
+                Fila[5] = Rs.getString("descuento");
+                Fila[6] = Rs.getString("id_empleado");
+                Fila[7] = Rs.getString("fecha");
+
+                Modelo.addRow(Fila);
+
+            }
+
+            return true;
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al Modificar : " + e);
+            return false;
+        }
+    }
+
+    public void buscarFrase(JTextField TxtConsultar, DefaultTableModel Modelo) {
+        try {
+            PreparedStatement Ps;
+            String SQL = "select * from venta where estado like '%" + TxtConsultar.getText() + "%'";
+            Ps = Con.prepareCall(SQL);
+
+            ResultSet Rs = Ps.executeQuery();
+            int numeroDeCampos = Rs.getMetaData().getColumnCount();
+            Modelo.setRowCount(0);
+            while (Rs.next()) {
+                Object Fila[] = new Object[numeroDeCampos];
+                Fila[0] = Rs.getInt("id_venta");
+                Fila[1] = Rs.getString("estado");
+                Fila[2] = Rs.getInt("id_cliente");
+                Fila[3] = Rs.getFloat("total");
+                Fila[4] = Rs.getString("metodo_pago");
+                Fila[5] = Rs.getString("descuento");
+                Fila[6] = Rs.getString("id_empleado");
+                Fila[7] = Rs.getString("fecha");
+                
+
+                Modelo.addRow(Fila);
+
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al Modificar : " + e);
+
         }
     }
 }

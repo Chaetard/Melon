@@ -11,10 +11,13 @@ import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import modelo.ConsultaVenta;
+import modelo.ModeloTablaVentas;
 import modelo.ModeloVenta;
 import vista.DoneVista;
+import vista.VistaBusqueda;
 import vista.VistaVentas;
 
 /**
@@ -48,10 +51,12 @@ public class ControladorVistaVentas implements MouseListener {
         VV.plusL.addMouseListener(this);
         VV.changesL.addMouseListener(this);
         VV.BtnBuscar.addMouseListener(this);
+        VV.busquedaL.addMouseListener(this);
 
     }
 
     public boolean comprovarCampos() {
+
         if (VV.idVenta.getText().isEmpty() || VV.cliente.getText().isEmpty()
                 || VV.estado.getText().isEmpty() || VV.descuento.getText().isEmpty()
                 || VV.metodoPag.getText().isEmpty() || VV.total.getText().isEmpty()
@@ -109,6 +114,10 @@ public class ControladorVistaVentas implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
+
+        if (e.getSource() == VV.busquedaL) {
+            busqedaMVC();
+        }
         if (e.getSource() == VV.searchL) {
             VV.BtnGuardar.setVisible(false);
             VV.BtnBuscar.setVisible(true);
@@ -138,7 +147,7 @@ public class ControladorVistaVentas implements MouseListener {
             VV.parrafo.setBounds(parrafoX, parrafoY, parrafoSize.width, parrafoSize.height);
             VV.BtnBuscar.setBounds(590, 585, 120, 60);
             posisionarItems();
-            limpiarCampos();
+            
         }
         if (e.getSource() == VV.changesL) {
             VV.BtnGuardar.setVisible(false);
@@ -168,7 +177,7 @@ public class ControladorVistaVentas implements MouseListener {
             VV.parrafo.setBounds(parrafoX, parrafoY, parrafoSize.width, parrafoSize.height);
             VV.BtnActualizar.setBounds(590, 585, 120, 60);
             posisionarItems();
-            limpiarCampos();
+            
         }
         if (e.getSource() == VV.crossL) {
             VV.BtnGuardar.setVisible(false);
@@ -198,7 +207,7 @@ public class ControladorVistaVentas implements MouseListener {
             VV.parrafo.setBounds(parrafoX, parrafoY, parrafoSize.width, parrafoSize.height);
             VV.BtnEliminar.setBounds(590, 585, 120, 60);
             posisionarItems();
-            limpiarCampos();
+            
         }
         if (e.getSource() == VV.plusL) {
             VV.BtnGuardar.setVisible(true);
@@ -452,6 +461,57 @@ public class ControladorVistaVentas implements MouseListener {
     private void done() {
         DoneVista doneVista = new DoneVista();
         ControladorDoneVista controladorDoneVista = new ControladorDoneVista(doneVista);
+    }
+
+    private void busqedaMVC() {
+        ModeloTablaVentas ModeloTablaVentas = new ModeloTablaVentas();
+        VistaBusqueda VistaBusqueda = new VistaBusqueda(new JFrame(), true);
+        
+        ControladorBusqueda ControladorBusqueda = new ControladorBusqueda(ModeloTablaVentas, ModeloVenta, VistaBusqueda);
+
+        if (ControladorBusqueda.est == true) {
+            llenarVistaModelo();
+        }
+
+    }
+
+    private void llenarVistaModelo() {
+
+        VV.BtnGuardar.setVisible(false);
+        VV.BtnBuscar.setVisible(false);
+        VV.BtnEliminar.setVisible(false);
+        VV.BtnActualizar.setVisible(true);
+        VV.idVentaL.setVisible(true);
+        VV.idVenta.setVisible(true);
+        VV.clienteL.setVisible(true);
+        VV.cliente.setVisible(true);
+        VV.estadoL.setVisible(true);
+        VV.estado.setVisible(true);
+        VV.descuentoL.setVisible(true);
+        VV.descuento.setVisible(true);
+        VV.metodoPagL.setVisible(true);
+        VV.metodoPag.setVisible(true);
+        VV.idEmpL.setVisible(true);
+        VV.idEmp.setVisible(true);
+        VV.totalL.setVisible(true);
+        VV.total.setVisible(true);
+        VV.parrafo.setText("Actualizar Datos de La Venta: IDs Validas");
+        VV.parrafo.setFont(new Font("Arial", Font.PLAIN, 25));
+        Dimension parrafoSize = VV.parrafo.getPreferredSize();
+        int parrafoX = (1280 - parrafoSize.width) / 2;
+        int parrafoY = 75;
+        VV.parrafo.setBounds(parrafoX, parrafoY, parrafoSize.width, parrafoSize.height);
+        VV.BtnActualizar.setBounds(590, 585, 120, 60);
+        posisionarItems();
+        limpiarCampos();
+
+        VV.idVenta.setText(String.valueOf(ModeloVenta.getid_Venta()));
+        VV.cliente.setText(String.valueOf(ModeloVenta.getId_cliente()));
+        VV.estado.setText(String.valueOf(ModeloVenta.getEstado()));
+        VV.descuento.setText(String.valueOf(ModeloVenta.getDescuento()));
+        VV.metodoPag.setText(String.valueOf(ModeloVenta.getMetodo_pago()));
+        VV.total.setText(String.valueOf(ModeloVenta.getTotal()));
+        VV.idEmp.setText(String.valueOf(ModeloVenta.getId_empleado()));
     }
 
 }

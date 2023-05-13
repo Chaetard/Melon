@@ -58,6 +58,10 @@ public class VistaVentas extends JFrame implements Fuentes {
     private ImageIcon plus = new ImageIcon(getClass().getResource("/imagenes/plus.png"));
     private ImageIcon plusTam = new ImageIcon(plus.getImage().getScaledInstance(tami, tami, Image.SCALE_DEFAULT));
     public JLabel plusL = new JLabel(plusTam);
+    
+    private ImageIcon busqueda = new ImageIcon(getClass().getResource("/imagenes/si.png"));
+    private ImageIcon busquedaTam = new ImageIcon(busqueda.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
+    public JLabel busquedaL = new JLabel(busquedaTam);
 
     private ImageIcon search = new ImageIcon(getClass().getResource("/imagenes/search.png"));
     private ImageIcon searchTam = new ImageIcon(search.getImage().getScaledInstance(tami, tami, Image.SCALE_DEFAULT));
@@ -163,6 +167,9 @@ public class VistaVentas extends JFrame implements Fuentes {
         changesL.setBounds(590, 290, tami, tami);
         crossL.setBounds(846, 290, tami, tami);
         logoutVentasL.setBounds(1102, 290, tami, tami);
+        
+        this.add(busquedaL);
+        busquedaL.setBounds(430,20,50,50);
 
         BtnBuscar.setPreferredSize(new Dimension(120, 60));
         BtnActualizar.setPreferredSize(new Dimension(120, 60));
@@ -183,40 +190,44 @@ public class VistaVentas extends JFrame implements Fuentes {
         parrafo.setBounds(parrafoX, parrafoY, parrafoSize.width, parrafoSize.height);
 
         idVentaL.setFont(FUENTES_SECUNDARIOS);
-
-        idVentaL.setBounds(340, 80, 500, 100);
+        idVentaL.setBounds(320, 80, 500, 100);
         idVenta.setBounds(510, 115, 500, 35);
-        total.setFont(FUENTES_SECUNDARIOS);
+        idVenta.setFont(FUENTES_SECUNDARIOS);
 
         clienteL.setFont(FUENTES_SECUNDARIOS);
-        clienteL.setBounds(340, 130, 500, 100);
+        clienteL.setBounds(320, 130, 500, 100);
         cliente.setBounds(510, 165, 500, 35);
+        cliente.setFont(FUENTES_SECUNDARIOS);
+        
 
         estadoL.setFont(FUENTES_SECUNDARIOS);
-        estadoL.setBounds(340, 180, 500, 100);
+        estadoL.setBounds(320, 180, 500, 100);
         estado.setBounds(510, 215, 500, 35);
+        estado.setFont(FUENTES_SECUNDARIOS);
 
         descuentoL.setFont(FUENTES_SECUNDARIOS);
-        descuentoL.setBounds(340, 230, 500, 100);
+        descuentoL.setBounds(320, 230, 500, 100);
         descuento.setBounds(510, 265, 500, 35);
+        descuento.setFont(FUENTES_SECUNDARIOS);
 
         metodoPagL.setFont(FUENTES_SECUNDARIOS);
-        metodoPagL.setBounds(340, 280, 500, 100);
+        metodoPagL.setBounds(320, 280, 500, 100);
         metodoPag.setBounds(510, 315, 500, 35);
+        metodoPag.setFont(FUENTES_SECUNDARIOS);
 
         totalL.setFont(FUENTES_SECUNDARIOS);
-        totalL.setBounds(340, 330, 500, 100);
+        totalL.setBounds(320, 330, 500, 100);
         total.setBounds(510, 365, 500, 35);
+        total.setFont(FUENTES_SECUNDARIOS);
 
         idEmpL.setFont(FUENTES_SECUNDARIOS);
-        idEmpL.setBounds(340, 400, 500, 100);
-        idEmp.setBounds(540, 435, 70, 35);
+        idEmpL.setBounds(320, 400, 500, 100);
+        idEmp.setBounds(510, 435, 70, 35);
+        idEmp.setFont(FUENTES_SECUNDARIOS);
 
         BtnGuardar.setBounds(120, 585, 120, 60);
         BtnBuscar.setBounds(340, 585, 120, 60);
         BtnEliminar.setBounds(560, 585, 120, 60);
         BtnActualizar.setBounds(780, 585, 120, 60);
-        
-
     }
 }
