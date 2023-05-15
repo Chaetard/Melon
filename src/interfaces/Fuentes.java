@@ -6,14 +6,13 @@
 package interfaces;
 
 import java.awt.Font;
-import java.io.File;
 
-/**
- *
- * @author Jesus Santos 221341606
- */
+
 public interface Fuentes {
-    Font FUENTES_TITULOS = new Font("Times new Roman",1,40);
-    Font FUENTES_SECUNDARIOS = new Font("Italic",1,25);
+
+    Font FUENTES_TITULOS = new Font("Times new Roman", Font.BOLD, 40);
+    Font FUENTES_SECUNDARIOS = new Font("Italic", Font.BOLD, 25);
+
     
 }
+

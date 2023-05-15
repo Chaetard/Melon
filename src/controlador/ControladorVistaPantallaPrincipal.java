@@ -6,9 +6,13 @@
 package controlador;
 
 import java.awt.Cursor;
+import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Frame;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
+import java.io.IOException;
 import javax.swing.JOptionPane;
 import modelo.ModeloUsuario;
 import modelo.ModeloUsuarioConf;
@@ -25,7 +29,7 @@ import vista.VistaVentas;
 public class ControladorVistaPantallaPrincipal implements MouseListener {
 
     VistaPantallaPrincipal VPP;
-    
+
     public ControladorVistaPantallaPrincipal(VistaPantallaPrincipal VPP) {
 
         this.VPP = VPP;

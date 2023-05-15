@@ -25,7 +25,7 @@ public class VistaUsuarios extends JFrame implements Fuentes {
     public JLabel titulo = new JLabel("Usuarios");
     public JLabel parrafo = new JLabel("Altas, Bajas, Busquedas Y Modificaciones");
 
-    public JLabel IdL = new JLabel("ID Nomina");
+    public JLabel IdL = new JLabel("Nomina");
     public JLabel NombreL = new JLabel("Nombre");
     public JLabel ContrasenaL = new JLabel("Contraseña");
     public JLabel UsuarioL = new JLabel("Usuario");

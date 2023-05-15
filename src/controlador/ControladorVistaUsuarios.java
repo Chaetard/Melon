@@ -92,7 +92,7 @@ public class ControladorVistaUsuarios implements MouseListener, KeyListener {
             }
         }
         if (e.getSource() == VU.btne) {
-            validarCampoId();
+
             EliminarCamposUsuarios();
         }
         if (e.getSource() == VU.btnb) {
@@ -125,9 +125,9 @@ public class ControladorVistaUsuarios implements MouseListener, KeyListener {
     }
 
     private void BuscarCamposUsuarios() {
-        llenarId();
+
         if (validarCampoId() == true) {
-            consultaUsuarioConf.buscar(ModeloUsuarioConf);
+            llenarId();
             if (consultaUsuarioConf.buscar(ModeloUsuarioConf) == true) {
                 done();
                 VU.Id.setText(String.valueOf(ModeloUsuarioConf.getId()));
@@ -135,6 +135,8 @@ public class ControladorVistaUsuarios implements MouseListener, KeyListener {
                 VU.Contrasena.setText("");
                 VU.Usuario.setText(String.valueOf(ModeloUsuarioConf.getUsuario()));
                 VU.Tipo.setText(String.valueOf(ModeloUsuarioConf.getTipo()));
+            } else {
+                JOptionPane.showMessageDialog(VU, " ERROR " + "Ese Usuario o Nomina No Existe");
             }
         }
 
@@ -143,19 +145,18 @@ public class ControladorVistaUsuarios implements MouseListener, KeyListener {
     private void EliminarCamposUsuarios() {
         llenarId();
 
-        if (validarCampoId() == true) {
-            consultaUsuarioConf.eliminar(ModeloUsuarioConf);
-            if (consultaUsuarioConf.eliminar(ModeloUsuarioConf) == true) {
-                done();
-                impiarId();
-            }
+        consultaUsuarioConf.eliminar(ModeloUsuarioConf);
+        if (consultaUsuarioConf.eliminar(ModeloUsuarioConf) == true) {
+            done();
+            limpiarDatos();
         }
+
     }
 
     private void ActualizarCamposUsuario() throws NoSuchAlgorithmException {
-        llenarModeloBuscar();
 
         if (validarCampoId() == true) {
+            llenarModeloBuscar();
             consultaUsuarioConf.modificar(ModeloUsuarioConf);
             if (consultaUsuarioConf.modificar(ModeloUsuarioConf) == true) {
                 done();
@@ -165,26 +166,29 @@ public class ControladorVistaUsuarios implements MouseListener, KeyListener {
     }
 
     private void AgregarCamposUsuario() throws NoSuchAlgorithmException {
-        llenarModeloBuscar();
+
         if (validarCampoId() == true) {
+            llenarModeloBuscar();
             if (consultaUsuarioConf.insertar(ModeloUsuarioConf) == true) {
                 done();
                 limpiarDatos();
             } else {
-                JOptionPane.showMessageDialog(VU, " ERROR " + "Ese Usuario o Nomina ah sido Registrado");
+                JOptionPane.showMessageDialog(VU, " ERROR " + " Ese Usuario o Nomina ah sido Registrado");
             }
         }
 
     }
 
     private boolean validarCampoId() {
-        if (VU.Id.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(VU, "El campo id_empleado no debe estar vacío.");
-
+        if (VU.Id.getText().isEmpty() && VU.Usuario.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(VU, " ERROR " + " Debes Ingresar Un Usuario o Nomina");
             return false;
+
         } else {
             return true;
+
         }
+
     }
 
     public void llenarModeloBuscar() throws NoSuchAlgorithmException {
@@ -203,9 +207,15 @@ public class ControladorVistaUsuarios implements MouseListener, KeyListener {
     }
 
     private void llenarId() {
-        String id_empleado = VU.Id.getText();
-        int empleado = Integer.parseInt(id_empleado);
-        ModeloUsuarioConf.setId(empleado);
+        if (VU.Id.getText().isEmpty()) {
+            ModeloUsuarioConf.setUsuario(VU.Usuario.getText());
+
+        } else {
+            String id_empleado = VU.Id.getText();
+            int empleado = Integer.parseInt(id_empleado);
+            ModeloUsuarioConf.setId(empleado);
+        }
+
     }
 
     private void done() {
@@ -227,9 +237,7 @@ public class ControladorVistaUsuarios implements MouseListener, KeyListener {
         VU.Tipo.setText("");
     }
 
-    private void impiarId() {
-        VU.Id.setText("");
-    }
+
 
     @Override
     public void keyTyped(KeyEvent e) {

@@ -33,7 +33,7 @@ public class ConsultaUsuarioConf extends Conexion {
             Ps.execute();
             return true;
         } catch (SQLException e) {
-            
+
             return false;
         }
     }
@@ -43,7 +43,7 @@ public class ConsultaUsuarioConf extends Conexion {
             PreparedStatement Ps;
             String SQL = "update empleados set id_empleados = ?, nombre = ?, usuario=?,password = ?, cargo = ? where id_empleados = ?";
             Ps = Con.prepareCall(SQL);
-            
+
             Ps.setInt(1, Modelo.getId());
             Ps.setString(2, Modelo.getNombre());
 
@@ -60,12 +60,14 @@ public class ConsultaUsuarioConf extends Conexion {
             return false;
         }
     }
+
     public boolean eliminar(ModeloUsuarioConf Modelo) {
         try {
             PreparedStatement Ps;
-            String SQL = "delete from empleados where id_empleados = ?";
+            String SQL = "delete from empleados where id_empleados = ? or usuario = ?";
             Ps = Con.prepareCall(SQL);
             Ps.setInt(1, Modelo.getId());
+            Ps.setString(2,Modelo.getUsuario());
             Ps.executeUpdate();
             return true;
         } catch (SQLException e) {
@@ -73,12 +75,14 @@ public class ConsultaUsuarioConf extends Conexion {
             return false;
         }
     }
+
     public boolean buscar(ModeloUsuarioConf Modelo) {
         try {
             PreparedStatement Ps;
-            String SQL = "select * from empleados where id_empleados = ?";
+            String SQL = "select * from empleados where id_empleados = ? or usuario = ?";
             Ps = Con.prepareCall(SQL);
             Ps.setInt(1, Modelo.getId());
+            Ps.setString(2, Modelo.getUsuario());
             ResultSet Rs = Ps.executeQuery();
 
             if (Rs.next()) {
@@ -87,14 +91,13 @@ public class ConsultaUsuarioConf extends Conexion {
                 Modelo.setPassword(Rs.getString("password"));
                 Modelo.setTipo(Rs.getString("cargo"));
                 Modelo.setUsuario(Rs.getString("usuario"));
-                
 
                 return true;
 
             }
             return false;
-        } catch (SQLException e){
-            JOptionPane.showMessageDialog(null, "Error al Buscar: " + e);
+        } catch (SQLException e) {
+
             return false;
         }
     }

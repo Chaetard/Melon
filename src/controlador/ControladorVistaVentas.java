@@ -14,7 +14,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -33,7 +32,6 @@ import vista.VistaVentas;
 public class ControladorVistaVentas implements MouseListener, KeyListener {
 
     public boolean estado = false;
-
     public boolean g = false;
     public boolean a = false;
     public boolean el = false;
@@ -43,8 +41,6 @@ public class ControladorVistaVentas implements MouseListener, KeyListener {
     ModeloVenta ModeloVenta;
     ConsultaVenta ConsultaVenta = new ConsultaVenta();
 
-    
-    
     int tami2 = 30;
 
     public ControladorVistaVentas(VistaVentas VV, ModeloVenta ModeloVenta) {
@@ -81,6 +77,7 @@ public class ControladorVistaVentas implements MouseListener, KeyListener {
         VV.metodoPag.addKeyListener(this);
         VV.total.addKeyListener(this);
         VV.idEmp.addKeyListener(this);
+
     }
 
     public boolean comprovarCampos() {
@@ -143,6 +140,7 @@ public class ControladorVistaVentas implements MouseListener, KeyListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
+
         if (e.getSource() == VV.power2L) {
             VV.power1L.setVisible(true);
             VV.power2L.setVisible(false);
@@ -824,72 +822,59 @@ public class ControladorVistaVentas implements MouseListener, KeyListener {
                         VV.cliente.requestFocus();
                     }
                 }
-
             }
         }
 
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
             if (e.getSource() == VV.cliente) {
                 if (campoVacio(VV.cliente.getText(), " ID CLIENTE", VV.cliente) == false) {
-
                 } else {
                     if (validaCampoEntero(VV.cliente.getText(), 11, VV.cliente) == true) {
                         VV.estado.requestFocus();
                     }
                 }
-
             }
         }
 
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
             if (e.getSource() == VV.estado) {
                 if (campoVacio(VV.estado.getText(), " ESTADO", VV.estado) == false) {
-
                 } else {
                     if (validarLongitud(VV.estado.getText(), 20, VV.estado) == true) {
                         VV.descuento.requestFocus();
                     }
-
                 }
-
             }
         }
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
             if (e.getSource() == VV.descuento) {
                 if (campoVacio(VV.descuento.getText(), " DESCUENTO", VV.descuento) == false) {
-
                 } else {
                     if (validaCampoEntero(VV.descuento.getText(), 16, VV.descuento) == true) {
                         VV.metodoPag.requestFocus();
                     }
                 }
-
             }
         }
 
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
             if (e.getSource() == VV.metodoPag) {
                 if (campoVacio(VV.metodoPag.getText(), " METODO DE PAGO", VV.metodoPag) == false) {
-
                 } else {
                     if (validarLongitud(VV.metodoPag.getText(), 40, VV.metodoPag) == true) {
                         VV.total.requestFocus();
                     }
-
                 }
-
             }
         }
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
             if (e.getSource() == VV.total) {
                 if (campoVacio(VV.total.getText(), " TOTAL", VV.total) == false) {
-
                 } else {
                     if (validaCampoEntero(VV.total.getText(), 16, VV.total) == true) {
                         VV.idEmp.requestFocus();
                     }
                 }
-
             }
         }
 
@@ -897,38 +882,30 @@ public class ControladorVistaVentas implements MouseListener, KeyListener {
             if (e.getSource() == VV.idEmp) {
                 if (a == true) {
                     if (campoVacio(VV.idEmp.getText(), " ID EMPLEADO", VV.idEmp) == false) {
-
                     } else {
                         if (validaCampoEntero(VV.idEmp.getText(), 16, VV.idEmp) == true) {
                             if (a == true) {
                                 InsertarDatosActualizar();
                                 a = false;
                             }
-
                         }
-
                     }
                 }
                 if (g == true) {
                     if (campoVacio(VV.idEmp.getText(), " ID EMPLEADO", VV.idEmp) == false) {
-
                     } else {
                         if (validaCampoEntero(VV.idEmp.getText(), 16, VV.idEmp) == true) {
                             if (g == true) {
                                 InsertarDatosVenta();
                                 g = false;
                             }
-
                         }
-
                     }
                 }
-
             }
         }
-
     }
-
+    
     @Override
     public void keyReleased(KeyEvent e) {
     }

@@ -6,12 +6,14 @@
 package vista;
 
 import interfaces.Fuentes;
+
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.FontFormatException;
+
+
 import java.awt.Image;
-import java.io.File;
-import java.io.IOException;
+
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -23,6 +25,9 @@ import javax.swing.JTextField;
  * @author Jesus Santos 221341606
  */
 public class VistaVentas extends JFrame implements Fuentes {
+
+   
+    
 
     public ImageIcon ImFavicon = new ImageIcon(getClass().getResource("/imagenes/favicon.png"));
     public JLabel titulo = new JLabel("ABC De Ventas");
@@ -96,11 +101,14 @@ public class VistaVentas extends JFrame implements Fuentes {
     private ImageIcon power2 = new ImageIcon(getClass().getResource("/imagenes/turn-on.png"));
     private ImageIcon power2Tam = new ImageIcon(power2.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
     public JLabel power2L = new JLabel(power2Tam);
-
+    
+    
+    
+    
     public VistaVentas(){
         configuracion();
         etiquetas();
-        
+
     }
 
     private void configuracion() {
@@ -116,8 +124,8 @@ public class VistaVentas extends JFrame implements Fuentes {
 
     }
 
-    private void etiquetas() {
-
+    private void etiquetas(){
+        
         this.add(titulo);
         this.add(parrafo);
 
@@ -243,8 +251,9 @@ public class VistaVentas extends JFrame implements Fuentes {
         this.add(power1L);
         this.add(power2L);
 
-        power1L.setBounds(1220, 20, 50, 50);
-        power2L.setBounds(1220, 20, 50, 50);
+        power1L.setBounds(1200, 20, 50, 50);
+        power2L.setBounds(1200, 20, 50, 50);
         power2L.setVisible(false);
+        
     }
 }
