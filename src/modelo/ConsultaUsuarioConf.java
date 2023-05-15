@@ -33,7 +33,7 @@ public class ConsultaUsuarioConf extends Conexion {
             Ps.execute();
             return true;
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al insertar : " + e);
+            
             return false;
         }
     }

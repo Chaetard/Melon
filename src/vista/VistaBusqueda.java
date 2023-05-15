@@ -21,7 +21,7 @@ import javax.swing.JTextField;
  */
 public class VistaBusqueda extends JDialog  implements Fuentes{
 
-    JLabel LblIdVenta = new JLabel("Estado de la Venta");
+    JLabel LblIdVenta = new JLabel("Busqueda por Filtro");
     public JTextField TxtId = new JTextField();
     public JButton BtnAceptar = new JButton("Aceptar");
 

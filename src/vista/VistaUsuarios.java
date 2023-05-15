@@ -8,6 +8,7 @@ package vista;
 import interfaces.Fuentes;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -35,12 +36,30 @@ public class VistaUsuarios extends JFrame implements Fuentes {
     public JPasswordField Contrasena = new JPasswordField();
     public JTextField Nombre = new JTextField();
     public JTextField Id = new JTextField();
+    int tami2 = 30;
+    
+    private ImageIcon plus = new ImageIcon(getClass().getResource("/imagenes/plus.png"));
+    private ImageIcon plusTam2 = new ImageIcon(plus.getImage().getScaledInstance(tami2, tami2, Image.SCALE_DEFAULT));
+    
+    private ImageIcon search = new ImageIcon(getClass().getResource("/imagenes/search.png"));
+    private ImageIcon searchTam2 = new ImageIcon(search.getImage().getScaledInstance(tami2, tami2, Image.SCALE_DEFAULT));
 
-    public JButton btng = new JButton("Guardar");
-    public JButton btnb = new JButton("Buscar");
-    public JButton btna = new JButton("Actualizar");
-    public JButton btne = new JButton("Eliminar");
-    public JButton btns = new JButton("Salir");
+    private ImageIcon logoutVentas = new ImageIcon(getClass().getResource("/imagenes/logoutVentas.png"));
+    private ImageIcon logoutVentasTam2 = new ImageIcon(logoutVentas.getImage().getScaledInstance(tami2, tami2, Image.SCALE_DEFAULT));
+
+    private ImageIcon changes = new ImageIcon(getClass().getResource("/imagenes/changes.png"));
+    private ImageIcon changesTam2 = new ImageIcon(changes.getImage().getScaledInstance(tami2, tami2, Image.SCALE_DEFAULT));
+
+    private ImageIcon cross = new ImageIcon(getClass().getResource("/imagenes/cross.png"));
+    private ImageIcon crossTam2 = new ImageIcon(cross.getImage().getScaledInstance(tami2, tami2, Image.SCALE_DEFAULT));
+
+  
+
+    public JButton btng = new JButton("Guardar", plusTam2);
+    public JButton btnb = new JButton("Buscar",searchTam2);
+    public JButton btna = new JButton("Actualizar",changesTam2);
+    public JButton btne = new JButton("Eliminar",crossTam2);
+    public JButton btns = new JButton("Salir",logoutVentasTam2);
 
     public VistaUsuarios() {
         configuracion();
@@ -111,18 +130,18 @@ public class VistaUsuarios extends JFrame implements Fuentes {
         UsuarioL.setBounds(340, 250, 500, 35);
         ContrasenaL.setBounds(340, 300, 500, 35);
         TipoL.setBounds(340, 350, 500, 35);
-        
+
         btng.setBounds(120, 585, 120, 60);
         btna.setBounds(340, 585, 120, 60);
         btne.setBounds(560, 585, 120, 60);
         btnb.setBounds(780, 585, 120, 60);
-        btns.setBounds(1000,585,120,60);
-        
+        btns.setBounds(1000, 585, 120, 60);
+
         Id.setFont(FUENTES_SECUNDARIOS);
         Nombre.setFont(FUENTES_SECUNDARIOS);
         Usuario.setFont(FUENTES_SECUNDARIOS);
         Contrasena.setFont(FUENTES_SECUNDARIOS);
         Tipo.setFont(FUENTES_SECUNDARIOS);
-        
+
     }
 }

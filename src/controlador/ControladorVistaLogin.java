@@ -5,7 +5,11 @@
  */
 package controlador;
 
+import java.awt.Color;
 import java.awt.Image;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.math.BigInteger;
@@ -24,7 +28,7 @@ import vista.VistaPantallaPrincipal;
  *
  * @author Jesus Santos 221341606
  */
-public class ControladorVistaLogin implements MouseListener {
+public class ControladorVistaLogin implements MouseListener, KeyListener {
 
     VistaLogin VL;
     ModeloUsuario ModeloUsuario;
@@ -37,6 +41,7 @@ public class ControladorVistaLogin implements MouseListener {
 
     public static String nam;
     public static String tip;
+
     public ControladorVistaLogin(VistaLogin VL, ModeloUsuario ModeloUsuario) {
         this.VL = VL;
         this.ModeloUsuario = ModeloUsuario;
@@ -45,11 +50,11 @@ public class ControladorVistaLogin implements MouseListener {
         oyentes();
 
     }
-    
-    private String encriptarPassword(String Password) throws NoSuchAlgorithmException{
+
+    private String encriptarPassword(String Password) throws NoSuchAlgorithmException {
         MessageDigest MD = MessageDigest.getInstance("MD5");
-        MD.update(Password.getBytes(),0,Password.length());
-        return new BigInteger(1,MD.digest()).toString(16);
+        MD.update(Password.getBytes(), 0, Password.length());
+        return new BigInteger(1, MD.digest()).toString(16);
     }
 
     public boolean camposValidos() {
@@ -60,10 +65,10 @@ public class ControladorVistaLogin implements MouseListener {
         }
     }
 
-    private void llenarModeloConCampos()throws NoSuchAlgorithmException{
-        
+    private void llenarModeloConCampos() throws NoSuchAlgorithmException {
+
         ModeloUsuario.setUsuario(VL.TxtUsuario.getText());
-        
+
         String PasswordSinEncriptar = new String(VL.TxtPassword.getPassword());
         String passEncriptado = encriptarPassword(PasswordSinEncriptar);
         System.out.println(encriptarPassword(PasswordSinEncriptar));
@@ -73,7 +78,7 @@ public class ControladorVistaLogin implements MouseListener {
 
     }
 
-    private void BuscarUsuarioPassword()  throws NoSuchAlgorithmException{
+    private void BuscarUsuarioPassword() throws NoSuchAlgorithmException {
         if (camposValidos() == true) {
             llenarModeloConCampos();
             if (ConsultasUsuario.buscarLogin(ModeloUsuario) == true) {
@@ -87,9 +92,14 @@ public class ControladorVistaLogin implements MouseListener {
 
             } else {
                 JOptionPane.showMessageDialog(VL, "Usuario o Password Incorrectos");
+                VL.TxtUsuario.setBackground(Color.red);
+                VL.TxtUsuario.setBackground(new java.awt.Color(255, 26, 26));
+                VL.TxtPassword.setBackground(new java.awt.Color(255, 26, 26));
             }
         } else {
             JOptionPane.showMessageDialog(VL, "Debes colocar texto en los campos" + "Usuario y Password");
+            VL.TxtPassword.setBackground(new java.awt.Color(255, 26, 26));
+            VL.TxtUsuario.setBackground(new java.awt.Color(255, 26, 26));
         }
     }
 
@@ -101,6 +111,10 @@ public class ControladorVistaLogin implements MouseListener {
             } catch (NoSuchAlgorithmException ex) {
                 Logger.getLogger(ControladorVistaLogin.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }
+        if (e.getSource() == VL.TxtUsuario || e.getSource() == VL.TxtPassword) {
+            VL.TxtUsuario.setBackground(Color.WHITE);
+            VL.TxtUsuario.setBackground(Color.WHITE);
         }
     }
 
@@ -124,6 +138,7 @@ public class ControladorVistaLogin implements MouseListener {
 
     @Override
     public void mouseEntered(MouseEvent e) {
+        
     }
 
     @Override
@@ -135,8 +150,45 @@ public class ControladorVistaLogin implements MouseListener {
 
         VL.BtnLog.addMouseListener(this);
 
+        VL.TxtUsuario.addKeyListener(this);
+
+        VL.TxtPassword.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    try {
+                        BuscarUsuarioPassword();
+                    } catch (NoSuchAlgorithmException ex) {
+                        Logger.getLogger(ControladorVistaLogin.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+        });
     }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        if (e.getSource() == VL.TxtUsuario || e.getSource() == VL.TxtPassword) {
+            VL.TxtUsuario.setBackground(Color.WHITE);
+            VL.TxtPassword.setBackground(Color.WHITE);
+        }
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+            
+            if (e.getSource() == VL.TxtUsuario) {
+                VL.TxtPassword.requestFocus();
+            }
+        }
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
     
+
     
+    }
 
 }

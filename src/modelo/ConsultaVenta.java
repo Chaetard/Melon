@@ -106,7 +106,7 @@ public class ConsultaVenta extends Conexion {
     public boolean buscarVentas(DefaultTableModel Modelo) {
         try {
             PreparedStatement Ps;
-            String SQL = "select * from venta order by fecha";
+            String SQL = "select * from venta order by id_venta";
             Ps = Con.prepareCall(SQL);
 
             ResultSet Rs = Ps.executeQuery();
@@ -136,7 +136,7 @@ public class ConsultaVenta extends Conexion {
     public void buscarFrase(JTextField TxtConsultar, DefaultTableModel Modelo) {
         try {
             PreparedStatement Ps;
-            String SQL = "select * from venta where estado like '%" + TxtConsultar.getText() + "%'";
+            String SQL = "select * from venta where estado like '%" + TxtConsultar.getText() + "%' or metodo_pago like '%" + TxtConsultar.getText() + "%' or id_venta like '%" + TxtConsultar.getText() + "%'";
             Ps = Con.prepareCall(SQL);
 
             ResultSet Rs = Ps.executeQuery();

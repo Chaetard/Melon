@@ -5,17 +5,18 @@
  */
 package vista;
 
-
 import interfaces.Fuentes;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import controlador.ControladorVistaVentas;
 
 /**
  *
@@ -48,24 +49,23 @@ public class VistaVentas extends JFrame implements Fuentes {
     public JLabel idEmpL = new JLabel("Id del Empleado");
     public JTextField idEmp = new JTextField();
 
-    public JButton BtnGuardar = new JButton("Guardar");
-    public JButton BtnBuscar = new JButton("Buscar");
-    public JButton BtnEliminar = new JButton("Eliminar");
-    public JButton BtnActualizar = new JButton("Actualizar");
-    
-
     public int tami = 100;
+    public int tami2 = 30;
     private ImageIcon plus = new ImageIcon(getClass().getResource("/imagenes/plus.png"));
     private ImageIcon plusTam = new ImageIcon(plus.getImage().getScaledInstance(tami, tami, Image.SCALE_DEFAULT));
+    private ImageIcon plusTam2 = new ImageIcon(plus.getImage().getScaledInstance(tami2, tami2, Image.SCALE_DEFAULT));
     public JLabel plusL = new JLabel(plusTam);
-    
+    public JButton BtnGuardar = new JButton("Guardar", plusTam2);
+
     private ImageIcon busqueda = new ImageIcon(getClass().getResource("/imagenes/si.png"));
     private ImageIcon busquedaTam = new ImageIcon(busqueda.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
     public JLabel busquedaL = new JLabel(busquedaTam);
 
     private ImageIcon search = new ImageIcon(getClass().getResource("/imagenes/search.png"));
     private ImageIcon searchTam = new ImageIcon(search.getImage().getScaledInstance(tami, tami, Image.SCALE_DEFAULT));
+    private ImageIcon searchTam2 = new ImageIcon(search.getImage().getScaledInstance(tami2, tami2, Image.SCALE_DEFAULT));
     public JLabel searchL = new JLabel(searchTam);
+    public JButton BtnBuscar = new JButton("Buscar", searchTam2);
 
     private ImageIcon logoutVentas = new ImageIcon(getClass().getResource("/imagenes/logoutVentas.png"));
     private ImageIcon logoutVentasTam = new ImageIcon(logoutVentas.getImage().getScaledInstance(tami, tami, Image.SCALE_DEFAULT));
@@ -73,23 +73,34 @@ public class VistaVentas extends JFrame implements Fuentes {
 
     private ImageIcon changes = new ImageIcon(getClass().getResource("/imagenes/changes.png"));
     private ImageIcon changesTam = new ImageIcon(changes.getImage().getScaledInstance(tami, tami, Image.SCALE_DEFAULT));
+    private ImageIcon changesTam2 = new ImageIcon(changes.getImage().getScaledInstance(tami2, tami2, Image.SCALE_DEFAULT));
     public JLabel changesL = new JLabel(changesTam);
+    public JButton BtnActualizar = new JButton("Actualizar", changesTam2);
 
     private ImageIcon cross = new ImageIcon(getClass().getResource("/imagenes/cross.png"));
     private ImageIcon crossTam = new ImageIcon(cross.getImage().getScaledInstance(tami, tami, Image.SCALE_DEFAULT));
+    private ImageIcon crossTam2 = new ImageIcon(cross.getImage().getScaledInstance(tami2, tami2, Image.SCALE_DEFAULT));
     public JLabel crossL = new JLabel(crossTam);
+    public JButton BtnEliminar = new JButton("Eliminar", crossTam2);
 
     public JLabel LplusL = new JLabel("");
     public JLabel LsearchL = new JLabel("");
     public JLabel LchangesL = new JLabel("");
     public JLabel LcrossL = new JLabel("");
     public JLabel LlogoutVentasL = new JLabel("");
-    private ControladorVistaVentas CC;
 
-    public VistaVentas() {
+    private ImageIcon power1 = new ImageIcon(getClass().getResource("/imagenes/power-button.png"));
+    private ImageIcon power1Tam = new ImageIcon(power1.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
+    public JLabel power1L = new JLabel(power1Tam);
+
+    private ImageIcon power2 = new ImageIcon(getClass().getResource("/imagenes/turn-on.png"));
+    private ImageIcon power2Tam = new ImageIcon(power2.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
+    public JLabel power2L = new JLabel(power2Tam);
+
+    public VistaVentas(){
         configuracion();
         etiquetas();
-
+        
     }
 
     private void configuracion() {
@@ -114,7 +125,7 @@ public class VistaVentas extends JFrame implements Fuentes {
         this.add(BtnBuscar);
         this.add(BtnEliminar);
         this.add(BtnActualizar);
-   
+
         this.add(idVentaL);
         this.add(idVenta);
         this.add(clienteL);
@@ -134,7 +145,7 @@ public class VistaVentas extends JFrame implements Fuentes {
         BtnBuscar.setVisible(false);
         BtnEliminar.setVisible(false);
         BtnActualizar.setVisible(false);
-  
+
         idVentaL.setVisible(false);
         idVenta.setVisible(false);
         clienteL.setVisible(false);
@@ -167,14 +178,14 @@ public class VistaVentas extends JFrame implements Fuentes {
         changesL.setBounds(590, 290, tami, tami);
         crossL.setBounds(846, 290, tami, tami);
         logoutVentasL.setBounds(1102, 290, tami, tami);
-        
+
         this.add(busquedaL);
-        busquedaL.setBounds(430,20,50,50);
+        busquedaL.setBounds(430, 20, 50, 50);
 
         BtnBuscar.setPreferredSize(new Dimension(120, 60));
         BtnActualizar.setPreferredSize(new Dimension(120, 60));
         BtnEliminar.setPreferredSize(new Dimension(120, 60));
-      
+
         BtnGuardar.setPreferredSize(new Dimension(120, 60));
 
         titulo.setFont(new Font("Arial", Font.PLAIN, 40));
@@ -198,7 +209,6 @@ public class VistaVentas extends JFrame implements Fuentes {
         clienteL.setBounds(320, 130, 500, 100);
         cliente.setBounds(510, 165, 500, 35);
         cliente.setFont(FUENTES_SECUNDARIOS);
-        
 
         estadoL.setFont(FUENTES_SECUNDARIOS);
         estadoL.setBounds(320, 180, 500, 100);
@@ -229,5 +239,12 @@ public class VistaVentas extends JFrame implements Fuentes {
         BtnBuscar.setBounds(340, 585, 120, 60);
         BtnEliminar.setBounds(560, 585, 120, 60);
         BtnActualizar.setBounds(780, 585, 120, 60);
+
+        this.add(power1L);
+        this.add(power2L);
+
+        power1L.setBounds(1220, 20, 50, 50);
+        power2L.setBounds(1220, 20, 50, 50);
+        power2L.setVisible(false);
     }
 }

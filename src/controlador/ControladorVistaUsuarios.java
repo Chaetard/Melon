@@ -5,6 +5,10 @@
  */
 package controlador;
 
+import java.awt.Color;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.math.BigInteger;
@@ -13,6 +17,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import modelo.ConsultaUsuarioConf;
 import modelo.ModeloUsuarioConf;
 import vista.DoneVista;
@@ -22,7 +27,7 @@ import vista.VistaUsuarios;
  *
  * @author Jesus Santos 221341606
  */
-public class ControladorVistaUsuarios implements MouseListener {
+public class ControladorVistaUsuarios implements MouseListener, KeyListener {
 
     VistaUsuarios VU;
     ModeloUsuarioConf ModeloUsuarioConf;
@@ -42,6 +47,28 @@ public class ControladorVistaUsuarios implements MouseListener {
         VU.btne.addMouseListener(this);
         VU.btnb.addMouseListener(this);
         VU.btns.addMouseListener(this);
+
+        VU.Id.addKeyListener(this);
+        VU.Nombre.addKeyListener(this);
+        VU.Usuario.addKeyListener(this);
+        VU.Contrasena.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    if (e.getSource() == VU.Contrasena) {
+                        if (campoVacio(VU.Contrasena.getText(), " NOMBRE", VU.Contrasena) == false) {
+
+                        } else {
+                            if (validarLongitud(VU.Contrasena.getText(), 11, VU.Contrasena) == true) {
+                                VU.Tipo.requestFocus();
+                            }
+                        }
+
+                    }
+
+                }
+            }
+        });
+        VU.Tipo.addKeyListener(this);
 
     }
 
@@ -105,7 +132,7 @@ public class ControladorVistaUsuarios implements MouseListener {
                 done();
                 VU.Id.setText(String.valueOf(ModeloUsuarioConf.getId()));
                 VU.Nombre.setText(String.valueOf(ModeloUsuarioConf.getNombre()));
-                VU.Contrasena.setText(String.valueOf(ModeloUsuarioConf.getPassword()));
+                VU.Contrasena.setText("");
                 VU.Usuario.setText(String.valueOf(ModeloUsuarioConf.getUsuario()));
                 VU.Tipo.setText(String.valueOf(ModeloUsuarioConf.getTipo()));
             }
@@ -143,6 +170,8 @@ public class ControladorVistaUsuarios implements MouseListener {
             if (consultaUsuarioConf.insertar(ModeloUsuarioConf) == true) {
                 done();
                 limpiarDatos();
+            } else {
+                JOptionPane.showMessageDialog(VU, " ERROR " + "Ese Usuario o Nomina ah sido Registrado");
             }
         }
 
@@ -202,4 +231,106 @@ public class ControladorVistaUsuarios implements MouseListener {
         VU.Id.setText("");
     }
 
+    @Override
+    public void keyTyped(KeyEvent e) {
+        if (e.getSource() == VU.Id || e.getSource() == VU.Nombre || e.getSource() == VU.Usuario || e.getSource() == VU.Contrasena || e.getSource() == VU.Tipo) {
+            VU.Id.setBackground(Color.WHITE);
+            VU.Nombre.setBackground(Color.WHITE);
+            VU.Usuario.setBackground(Color.WHITE);
+            VU.Contrasena.setBackground(Color.WHITE);
+            VU.Tipo.setBackground(Color.WHITE);
+        }
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (e.getSource() == VU.Id) {
+                if (campoVacio(VU.Id.getText(), " ID NOMINA", VU.Id) == false) {
+
+                } else {
+                    if (validaCampoEntero(VU.Id.getText(), 11, VU.Id) == true) {
+                        VU.Nombre.requestFocus();
+                    }
+                }
+
+            }
+        }
+        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (e.getSource() == VU.Nombre) {
+                if (campoVacio(VU.Nombre.getText(), " NOMBRE", VU.Nombre) == false) {
+
+                } else {
+                    if (validarLongitud(VU.Nombre.getText(), 50, VU.Nombre) == true) {
+                        VU.Usuario.requestFocus();
+                    }
+                }
+
+            }
+        }
+
+        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (e.getSource() == VU.Usuario) {
+                if (campoVacio(VU.Usuario.getText(), " USUARIO", VU.Usuario) == false) {
+
+                } else {
+                    if (validarLongitud(VU.Usuario.getText(), 20, VU.Usuario) == true) {
+                        VU.Contrasena.requestFocus();
+                    }
+                }
+
+            }
+        }
+
+        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (e.getSource() == VU.Tipo) {
+                if (campoVacio(VU.Tipo.getText(), " TIPO", VU.Tipo) == false) {
+
+                } else {
+                    if (validarLongitud(VU.Tipo.getText(), 20, VU.Tipo) == true) {
+
+                    }
+                }
+
+            }
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
+    }
+
+    private boolean validaCampoEntero(String Cadena, int longitud, JTextField jtf) {
+        if (Cadena.matches("[0-9,.]+") && Cadena.length() < longitud + 1) {
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(VU, "Solo Numeros validos con una longitud no mayor a: " + longitud);
+            jtf.setBackground(new java.awt.Color(255, 26, 26));
+
+            return false;
+        }
+    }
+
+    private boolean campoVacio(String Cadena, String Tipo, JTextField tipode) {
+        if (Cadena.isEmpty()) {
+            JOptionPane.showMessageDialog(VU, "Debes Ingresar Datos en el Campo" + Tipo);
+            tipode.setBackground(new java.awt.Color(255, 26, 26));
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean validarLongitud(String Cadena, int longitud, JTextField jtf) {
+        if (Cadena.length() < longitud - 1) {
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(VU, "Solo una longitud no mayor a: " + longitud);
+            jtf.setBackground(new java.awt.Color(255, 26, 26));
+
+            return false;
+        }
+    }
 }
