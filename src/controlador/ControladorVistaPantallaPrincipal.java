@@ -6,19 +6,21 @@
 package controlador;
 
 import java.awt.Cursor;
-import java.awt.Font;
-import java.awt.FontFormatException;
 import java.awt.Frame;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.File;
-import java.io.IOException;
 import javax.swing.JOptionPane;
+import modelo.ModeloCliente;
+import modelo.ModeloEmpleado;
+import modelo.ModeloProveedor;
 import modelo.ModeloUsuario;
 import modelo.ModeloUsuarioConf;
 import modelo.ModeloVenta;
+import vista.VistaClientes;
+import vista.VistaEmpleados;
 import vista.VistaLogin;
 import vista.VistaPantallaPrincipal;
+import vista.VistaProveedor;
 import vista.VistaUsuarios;
 import vista.VistaVentas;
 
@@ -72,6 +74,21 @@ public class ControladorVistaPantallaPrincipal implements MouseListener {
             ModeloUsuarioConf ModeloUsuarioConf = new ModeloUsuarioConf();
             ControladorVistaUsuarios controladorVistaUsuarios = new ControladorVistaUsuarios(vistaUsuarios, ModeloUsuarioConf);
         }
+        if (e.getSource() == VPP.Lblcust) {
+            VistaClientes vistaClientes = new VistaClientes();
+            ModeloCliente modeloCliente = new ModeloCliente();
+            ControladorVistaClientes controladorVistaClientes = new ControladorVistaClientes(vistaClientes, modeloCliente);
+        }
+        if (e.getSource() == VPP.LblParcel) {
+            VistaProveedor vistaProveedor = new VistaProveedor();
+            ModeloProveedor modeloProveedor = new ModeloProveedor();
+            ControladorVistaProveedor controladorVistaProveedor = new ControladorVistaProveedor(vistaProveedor, modeloProveedor);
+        }
+        if (e.getSource() == VPP.Lblemp) {
+            VistaEmpleados vistaEmpleados = new VistaEmpleados();
+            ModeloEmpleado modeloEmpleado = new ModeloEmpleado();
+            ControladorVistaEmpleados controladorVistaEmpleados = new ControladorVistaEmpleados(vistaEmpleados, modeloEmpleado);
+        }
     }
 
     @Override
@@ -115,5 +132,8 @@ public class ControladorVistaPantallaPrincipal implements MouseListener {
         VPP.LblLog.addMouseListener(this);
         VPP.LblUsuario.addMouseListener(this);
         VPP.LblCarr.addMouseListener(this);
+        VPP.Lblcust.addMouseListener(this);
+        VPP.LblParcel.addMouseListener(this);
+        VPP.Lblemp.addMouseListener(this);
     }
 }

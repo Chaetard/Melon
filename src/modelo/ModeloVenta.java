@@ -10,16 +10,18 @@ package modelo;
  * @author Jesus Santos 221341606
  */
 public class ModeloVenta {
+
     private int id_venta;
     private int id_cliente;
     private String Estado;
-    private double  descuento;
+    private double descuento;
     private String Metodo_pago;
     private double total;
     private int id_empleado;
     private String fecha;
-    public ModeloVenta(){
-        
+
+    public ModeloVenta() {
+
     }
 
     public int getid_Venta() {
@@ -85,5 +87,5 @@ public class ModeloVenta {
     public void setFecha(String fecha) {
         this.fecha = fecha;
     }
-    
+
 }

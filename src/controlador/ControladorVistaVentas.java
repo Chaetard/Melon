@@ -32,6 +32,7 @@ import vista.VistaVentas;
 public class ControladorVistaVentas implements MouseListener, KeyListener {
 
     public boolean estado = false;
+    
     public boolean g = false;
     public boolean a = false;
     public boolean el = false;

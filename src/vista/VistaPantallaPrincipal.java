@@ -47,6 +47,18 @@ public class VistaPantallaPrincipal extends JFrame implements interfaces.Fuentes
     private ImageIcon carrRedimensionado = new ImageIcon(carr.getImage().getScaledInstance(is, is, Image.SCALE_DEFAULT));
     public JLabel LblCarr = new JLabel(carrRedimensionado);
 
+    private ImageIcon cust = new ImageIcon(getClass().getResource("/imagenes/customer.png"));
+    private ImageIcon custT = new ImageIcon(cust.getImage().getScaledInstance(is, is, Image.SCALE_DEFAULT));
+    public JLabel Lblcust = new JLabel(custT);
+
+    private ImageIcon parcel = new ImageIcon(getClass().getResource("/imagenes/parcel.png"));
+    private ImageIcon parcelT = new ImageIcon(parcel.getImage().getScaledInstance(is, is, Image.SCALE_DEFAULT));
+    public JLabel LblParcel = new JLabel(parcelT);
+
+    private ImageIcon emp = new ImageIcon(getClass().getResource("/imagenes/empleado.png"));
+    private ImageIcon empT = new ImageIcon(emp.getImage().getScaledInstance(is, is, Image.SCALE_DEFAULT));
+    public JLabel Lblemp = new JLabel(empT);
+
     private ImageIcon min = new ImageIcon(getClass().getResource("/imagenes/min.png"));
     private ImageIcon minRedimensionado = new ImageIcon(min.getImage().getScaledInstance(is, is, Image.SCALE_DEFAULT));
     public JLabel Lblmin = new JLabel(minRedimensionado);
@@ -89,13 +101,18 @@ public class VistaPantallaPrincipal extends JFrame implements interfaces.Fuentes
         Tipo.setFont(FUENTES_SECUNDARIOS);
         PanelArriba.add(Tipo);
 
-        if (tmsj.equalsIgnoreCase("GERENTE")||tmsj.equalsIgnoreCase("ADMINISTRADOR")||tmsj.equalsIgnoreCase("SUPERADMINISTRADOR")) {
+        if (tmsj.equalsIgnoreCase("GERENTE") || tmsj.equalsIgnoreCase("ADMINISTRADOR") || tmsj.equalsIgnoreCase("SUPERADMINISTRADOR")) {
             PanelArriba.add(LblUsuario);
         }
-        
+
+        PanelArriba.add(Lblemp);
+        Lblemp.setToolTipText("Empleados");
+        PanelArriba.add(LblParcel);
+        LblParcel.setToolTipText("Proveedores");
         PanelArriba.add(LblCarr);
         LblCarr.setToolTipText("Registrar Ventas");
-
+        PanelArriba.add(Lblcust);
+        Lblcust.setToolTipText("Clientes");
         PanelArriba.add(LblLog);
         LblLog.setToolTipText("Cerrar Sesion");
         PanelArriba.add(Lblmin);

@@ -86,6 +86,8 @@ public class ControladorVistaLogin implements MouseListener, KeyListener {
                 nam = ModeloUsuario.getNombre();
                 tip = ModeloUsuario.getTipo();
                 VL.dispose();
+                
+                
                 VistaPantallaPrincipal vistaPantallaPrincipal = new VistaPantallaPrincipal();
                 ControladorVistaPantallaPrincipal ControladorVistaPantallaPrincipal;
                 ControladorVistaPantallaPrincipal = new ControladorVistaPantallaPrincipal(vistaPantallaPrincipal);
@@ -138,7 +140,7 @@ public class ControladorVistaLogin implements MouseListener, KeyListener {
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        
+
     }
 
     @Override
@@ -176,7 +178,7 @@ public class ControladorVistaLogin implements MouseListener, KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-            
+
             if (e.getSource() == VL.TxtUsuario) {
                 VL.TxtPassword.requestFocus();
             }
@@ -186,9 +188,7 @@ public class ControladorVistaLogin implements MouseListener, KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
-    
 
-    
     }
 
 }

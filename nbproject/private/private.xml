@@ -12,14 +12,11 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Chuy_/OneDrive/Documentos/NetBeansProjects/Melon/src/vista/VistaBusqueda.java</file>
-            <file>file:/C:/Users/Chuy_/OneDrive/Documentos/NetBeansProjects/Melon/src/modelo/ModeloVenta.java</file>
             <file>file:/C:/Users/Chuy_/OneDrive/Documentos/NetBeansProjects/Melon/src/vista/VistaPantallaPrincipal.java</file>
-            <file>file:/C:/Users/Chuy_/OneDrive/Documentos/NetBeansProjects/Melon/src/controlador/ControladorBusqueda.java</file>
-            <file>file:/C:/Users/Chuy_/OneDrive/Documentos/NetBeansProjects/Melon/src/controlador/ControladorVistaVentas.java</file>
-            <file>file:/C:/Users/Chuy_/OneDrive/Documentos/NetBeansProjects/Melon/src/vista/VistaUsuarios.java</file>
-            <file>file:/C:/Users/Chuy_/OneDrive/Documentos/NetBeansProjects/Melon/src/modelo/ModeloTablaVentas.java</file>
-            <file>file:/C:/Users/Chuy_/OneDrive/Documentos/NetBeansProjects/Melon/src/modelo/ConsultaVenta.java</file>
+            <file>file:/C:/Users/Chuy_/OneDrive/Documentos/NetBeansProjects/Melon/src/controlador/ControladorVistaPantallaPrincipal.java</file>
+            <file>file:/C:/Users/Chuy_/OneDrive/Documentos/NetBeansProjects/Melon/src/controlador/ControladorVistaLogin.java</file>
+            <file>file:/C:/Users/Chuy_/OneDrive/Documentos/NetBeansProjects/Melon/src/controlador/ControladorVistaEmpleados.java</file>
+            <file>file:/C:/Users/Chuy_/OneDrive/Documentos/NetBeansProjects/Melon/src/vista/VistaEmpleados.java</file>
         </group>
     </open-files>
 </project-private>
