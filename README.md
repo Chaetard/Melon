@@ -8,7 +8,7 @@ Este archivo README proporciona instrucciones sobre cómo ejecutar el proyecto e
 Asegúrate de tener instalado lo siguiente en tu sistema:
 
 1. **Java Development Kit (JDK)**: Debes tener al menos Java 8 instalado en tu sistema. Puedes verificar si está instalado ejecutando el siguiente comando en tu terminal:
-2. ```bash
+ ```bash
    java -version
    ```
    
